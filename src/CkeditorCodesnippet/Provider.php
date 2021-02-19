@@ -7,24 +7,24 @@ use Concrete\Core\Application\ApplicationAwareTrait;
 use Concrete\Core\Asset\AssetList;
 use Concrete\Core\Config\Repository\Repository;
 use Concrete\Core\Editor\Plugin;
-use Concrete\Core\Logging\Logger;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 final class Provider implements ApplicationAwareInterface
 {
     use ApplicationAwareTrait;
 
     /**
-     * @var Repository
+     * @var \Concrete\Core\Config\Repository\Repository
      */
     protected $config;
 
     /**
-     * @var Logger
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
-    public function __construct(Logger $logger, Repository $config)
+    public function __construct(LoggerInterface $logger, Repository $config)
     {
         $this->logger = $logger;
         $this->config = $config;
@@ -36,7 +36,7 @@ final class Provider implements ApplicationAwareInterface
             $this->listeners();
             $this->registerEditorPlugin();
         } catch (Exception $e) {
-            $this->logger->addDebug($e->getMessage());
+            $this->logger->debug($e->getMessage());
         }
     }
 

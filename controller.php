@@ -10,7 +10,7 @@ final class Controller extends Package
 {
     protected $pkgHandle = 'ckeditor_codesnippet';
     protected $appVersionRequired = '8.2.1';
-    protected $pkgVersion = '1.0.0';
+    protected $pkgVersion = '1.0.1';
     protected $pkgAutoloaderRegistries = [
         'src/CkeditorCodesnippet' => '\A3020\CkeditorCodesnippet',
     ];

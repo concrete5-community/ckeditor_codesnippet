@@ -6,8 +6,8 @@ use Concrete\Core\Asset\Asset;
 use Concrete\Core\Asset\AssetList;
 use Concrete\Core\Config\Repository\Repository;
 use Concrete\Core\Http\ResponseAssetGroup;
-use Concrete\Core\Logging\Logger;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 final class PageView
 {
@@ -17,11 +17,11 @@ final class PageView
     private $config;
 
     /**
-     * @var Logger
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
-    public function __construct(Repository $config, Logger $logger)
+    public function __construct(Repository $config, LoggerInterface $logger)
     {
         $this->config = $config;
         $this->logger = $logger;
@@ -32,7 +32,7 @@ final class PageView
         try {
             $this->loadAssets();
         } catch (Exception $e) {
-            $this->logger->addDebug($e->getMessage());
+            $this->logger->debug($e->getMessage());
         }
     }
 
